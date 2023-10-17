@@ -2,7 +2,10 @@
 :- set_prolog_flag(answer_write_options,[max_depth(0)]).
 :- ['dados.pl'], ['keywords.pl'].
 
-%3.1
+    %%%%%
+    %3.1%
+    %%%%%
+
 /*E verdade se EventosSemSala e uma lista (ordenada e sem elementos repetidos)
 composta por IDs de eventos sem sala. */
 eventosSemSalas(EventosSemSala):-
@@ -35,7 +38,10 @@ getPeriodo(Periodo, ID):-
     horario(ID,_,_,_,_,p3_4), %Evento semestral (p3_4).
     (Periodo = p3; Periodo = p4), !.
 
-%3.2
+    %%%%%
+    %3.2%
+    %%%%%
+
 /*(Caso terminal) E verdade se EventosNoPeriodo e uma lista (ordena e sem elementos repetidos)
  de IDs (da lista ListaEventos) de eventos que ocorrem no periodo Periodo. */
 organizaEventos([],_,[]):- !.
@@ -71,6 +77,7 @@ das disciplinas nao existir no curso Curso.*/
 organizaDisciplinas(ListaDisciplinas, Curso, Semestres):-
     sort(ListaDisciplinas, ListaDisciplinasSorted),
     organizaDisciplinas_aux(ListaDisciplinasSorted, Curso, Semestres). %Predicado auxiliar recebe ListaDisciplinas ordenada e sem elementos repetidos.
+
 /*(Caso terminal) Predicado auxiliar ao predicado OrganizaDisciplinas (tambem e verdade se acontecer
 o mesmo que em OrganizaDisciplinas).*/
 organizaDisciplinas_aux([],_,[[],[]]):- !.
@@ -109,8 +116,11 @@ evolucaoHorasCurso_aux(Curso, Evolucao, [P|R], [S|T]):-
     TupEvolucao = (P,S,TotalHoras),
     Evolucao = [TupEvolucao|TupEvolucao2],
     evolucaoHorasCurso_aux(Curso, TupEvolucao2, R, T).
-    
-%3.3
+
+    %%%%%
+    %3.3%
+    %%%%%
+
 /*E verdade se Horas e o numero de horas sobrepostas entre o evento (HoraInicioEvento, HoraFimEvento)
 e o slot (HoraInicioDada, HoraFimDada), se nao houver sobreposicao o predicado falha.*/
 ocupaSlot(HoraInicioDada, HoraFimDada, HoraInicioEvento, HoraFimEvento, Horas):- 
@@ -190,7 +200,10 @@ ocupacaoCritica_aux([],_,_,_,[]):- !.
 ocupacaoCritica_aux([_|R], HoraInicio, HoraFim, Threshold, S):- %Caso da percentagem ser menor ou igual.
     ocupacaoCritica_aux(R, HoraInicio, HoraFim, Threshold, S).
     
-%3.4
+    %%%%%
+    %3.4%
+    %%%%%
+    
 /*E verdade se OcupacaoMesa e uma lista com 3 listas (a primeira contem um lado da mesa - 3 lugares,
 a segunda as cabeceiras - 2 lugares, e o terceiro o outro lado - 3 lugares), ListaPessoas e a lista
 com o nome das pessoas que se vao sentar na mesa e ListaRestricoes e a lista de restricoes a verificar
